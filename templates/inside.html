@@ -1,0 +1,28 @@
+{% extends "header.html" %}
+
+
+{% block body %}
+
+{% if not logged_in %}
+
+ <h1>You are not logged into this website</h1>
+
+{% endif %}
+
+{% if logged_in %}
+
+<div style="min-height: 100%; padding-left: 150px;"> 
+
+  <h3> Username: {{ username }} </h3> 
+  <h3> Firstname: {{ firstname }} </h3> 
+  <h3> Lastname: {{ lastname }} </h3> 
+  <h3> Email: {{ email }} </h3> 
+  <h3> Address: {{ streetaddress }} {{ city }}, {{ state }} {{ zipcode }} </h3> 
+
+</div>
+{% endif %}
+{% endif %}
+
+{% endblock %}
+ 
+		

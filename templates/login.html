@@ -1,0 +1,123 @@
+{% extends "header.html" %}
+
+{% block body %}
+{% if not logged_in %}
+    <div class="bread_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:1989/">Home</a></li>
+                        <li>Login</li>
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="container" style=" min-height: 100%">
+	<br>
+		<br>
+			<h4> Please Login: </h4>
+			<br>
+			<form action="" class="form-inline" method="post">
+			<input type="text" class="form-control" placeholder="Username" name="username" value="{{request.form.username}}">
+			<input type="password" class="form-control" placeholder="Password" name="password" value="{{request.form.password}}">
+			<input class="btn btn-default" type="submit" value="Login">
+		</form>
+
+		<p>{{error}}</p>
+
+		<br>
+		<a href="http://localhost:1989/register/"><button class="btn btn-default" type="submit" > Create an account </button></a>
+	</div>
+	<br>
+	</br>
+		<br>
+	</br>	<br>
+	</br>
+		<br>
+	</br>
+		<br>
+	</br>
+		<br>
+	</br>
+		<br>
+
+	</br>
+{% endif %}
+{% if logged_in %}
+{% if not admin %}
+    <div class="bread_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:1989/">Home</a></li>
+                        <li class = "active">Login</li>
+
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if admin %}
+    <div class="bread_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:1989/">Home</a></li>
+                        <li class = "active">Login</li>
+                        <li class="active">Admin</li>
+
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+            <div class="container"> 
+
+<h4> Admin Access: </h4>
+
+
+		<a href="http://localhost:1989/database/"><button class="btn btn-default" type="submit" > Database </button></a>
+		<a href="http://localhost:1989/text/"><button class="btn btn-default" type="submit" > Text </button></a>
+
+        </div>
+
+
+{% endif %}
+
+<div class="container"> 
+
+	<h3> User Info: </h3>
+  <h5> Username: {{ username }} </h5> 
+  <h5> Firstname: {{ firstname }} </h5> 
+  <h5> Lastname: {{ lastname }} </h5> 
+  <h5> Email: {{ email }} </h5> 
+  <h5> Address: {{ streetaddress }} {{ city }}, {{ state }} {{ zipcode }} </h5> 
+  <h5> Phone Number: {{ phonenumber }} </h5> 
+  <h5> Special Needs: {{ specialneeds }} </h5> 
+
+
+
+</div>
+
+
+{% endif %}
+	<br>
+	</br>
+		<br>
+	</br>	<br>
+	</br>
+		<br>
+	</br>
+		<br>
+	</br>
+		<br>
+	</br>
+		<br>
+	</br>
+
+{% endblock %}

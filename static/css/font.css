@@ -1,0 +1,29 @@
+/* fonts */
+@font-face {
+    font-family: "Better";
+    src: url('Better Together Script.ttf');
+}
+@font-face {
+    font-family: "Stea";
+    src: url('Stea Font.otf');
+}
+@font-face {
+    font-family: "Luna";
+    src: url('Luna.ttf');
+}
+@font-face {
+    font-family: "Shore";
+    src: url('Shorelines Script Bold.otf');
+}
+@font-face {
+    font-family: "Social";
+    src: url('PWHandySocialIcons.ttf');
+}
+@font-face {
+    font-family: "SocialM";
+    src: url('SocialType.ttf');
+}
+
+#table {
+    font-family: SocialM;
+}

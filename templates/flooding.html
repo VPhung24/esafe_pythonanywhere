@@ -1,0 +1,61 @@
+{% extends "header.html" %}
+
+{% block body %}
+    <div class="bread_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:1989/">Home</a></li>
+                        <li class = "active">Emergency Preparedness</li>
+                        <li class="active">Flooding</li>
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="site-main page-main">
+        <div class="container">
+            <div class="row">
+                <section class="page col-sm-9">
+                    <h2 class="page-title">FLOODING</h2>
+                    <div class = "entry">
+                        <div id = "WHAT_IS_A_FLASH_FLOOD">
+                        <h4>WHAT IS A FLASH FLOOD?</h4>
+                            <p> Flash floods are dense floods that happen after a heavy rainfall. Waters can rise up to 30 feet and higher. According to the National Weather Service, "Flash floods are short-term events occurring within six hours of the causative event (heavy rain, dam break, levee failure, rapid snowmelt and ice jams) and often within two hours of the start of high-intensity rainfall." Flash floods can move cars, homes, trees, and destroy buldings.</p>
+                        </div>
+
+                        <div id = "IN_GENERAL">
+                        <h4>IN GENERAL:</h4>
+                            <p> Avoid underground areas, such as basements and parking areas. Don't walk/drive in water above your ankles. Get to higher ground. Turn off the electricity, and do not step in water where activated electrical utilities have fallen into. Turn off all gas appliances. Avoid bodies of water, such as ponds or lakes.</p>
+
+                            <p> Turn on your radio/TV, and stay alert for Wireless Emergency Alerts. Listen to officials and their instructions.</p>
+                        </div>
+
+                        <div id = "IF_IN_A_VEHICLE">
+                        <h4>IF IN A VEHICLE:</h4>
+                            <p> If you see a road covered in flood water, avoid that road at all costs. 2 feet of water can cause most cars to float, leaving the driver and passengers at potential danger.</p>
+                        </div>
+
+                        <div id = "AFTER_THE_FLASH_FLOOD">
+                        <h4>AFTER THE FLASH FLOOD:</h4>
+                            <p> Turn on your radio/TV, and stay alert for Wireless Emergency Alerts. Listen to officials and their instructions. Photograph any damage done to your property for insurance purposes. Contact your friends and family. Seek first aid if needed. Look at our emergency contact page for more.</p>   
+                        </div>
+                    </div>
+                </section>
+                <aside class="sidebar col-sm-3">
+                    <div class="widget">
+                        <h4>SERVICES</h4>
+                        <ul>
+                            <li><a href="#WHAT_IS_A_FLASH_FLOOD" title="What is a Flash Flood">What is a Flash Flood</a></li>
+                            <li><a href="#IN_GENERAL" title="In General">In General</a></li>
+                            <li><a href="#IF_IN_A_VEHICLE" title="If in A Vehicle">If in a Vehicle</a></li>
+                            <li><a href="#AFTER_THE_FLASH_FLOOD" title="After the Flash Flood">After the Flash Flood</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

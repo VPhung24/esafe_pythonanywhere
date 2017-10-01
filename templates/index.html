@@ -1,0 +1,84 @@
+{% extends "header.html" %}
+
+{% block body %}
+<body>
+
+    <main class="site-main">
+        <section style="background-image: url(static/images/background.jpg); background-position: center center;background-repeat: no-repeat;background-size: cover;height: 475px;padding: 0;">
+            <div class="hero_content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1>ESAFE</h1>
+                            <h2>Making the World Safer</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="services">
+            <h2 class="section-title"></h2>
+            <p class="desc"></p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="media">
+                            <div class="media-left media-middle">
+                                <i class="fa fa-cubes"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">MISSION STATEMENT</h4>
+                                <p>ESAFE is a nonprofit project created by Girls Who Code members to help prepare people for emergencies. ESAFE strives to save lives by encouraging people to have a backup plan in case of a natural disaster. Dedicated to preventing casualties, ESAFE is one of the first projects to have been used officially by the government, and continues to lead in natural disaster alertness. With its nonprofit, free program, ESAFE is widely used by families and friends to stay safe together.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="media">
+                            <div class="media-left media-middle">
+                                <i class="fa fa-institution"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">THE PROCESS</h4>
+                                <p>Due to the high amount of disasters experienced in California, citizens could be put in danger at any moment. After experiencing several of these disasters and seeing many of the heartbreaking aftereffects, Serina Khanna and Vivian Phung decided to take a stand and actively help. Together, they gained experience in a Girls Who Code Summer Immersion program, and used that experience to create ESAFE in a short matter of time. Throughout this, Serina and Vivian kept in mind their utmost goal: to help people.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="media">
+                            <div class="media-left media-middle">
+                                <i class="fa fa-line-chart"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">THE RESULT</h4>
+                                <p>Serina and Vivian continued to work hard on ESAFE to make it a fully functioning social network and website. Upon completing ESAFE, Serina and Vivian successfully contacted the city of Hayward and asked to collaborate with governmental figures to make ESAFE a legitimate appliance. After working through a few kinks, ESAFE was offically named a governmental resource! ESAFE remains as a safety program, consistently being improved by its wonderful coders, and will continue help the public.</p>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="static/js/bootstrap1.min.js"></script>
+    <script type="text/javascript">
+        $('.carousel[data-type="multi"] .item').each(function(){
+          var next = $(this).next();
+          if (!next.length) {
+            next = $(this).siblings(':first');
+          }
+          next.children(':first-child').clone().appendTo($(this));
+
+          for (var i=0;i<4;i++) {
+            next=next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+
+            next.children(':first-child').clone().appendTo($(this));
+          }
+        });        
+    </script>
+</body>
+</html>
+{% endblock %}

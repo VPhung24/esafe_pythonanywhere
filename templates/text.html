@@ -1,0 +1,68 @@
+{% extends "header.html" %}
+
+{% block body %}
+    <div class="bread_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:1989/">Home</a></li>
+                        <li class = "active">Login</li>
+                        <li class="active">Text</li>
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% if logged_in %}
+{% if admin %}
+<br> </br>
+
+<div class="container" >
+    <h2 class="page-title">TEXT</h2>
+	<form action="http://localhost:1989/text/" class="form-inline" method="post">
+		<h1> </h1>
+		<input type="text" class="form-control" placeholder="Text Message" name="text" value="{{request.form.text}}">
+
+		<input class="btn btn-default" type="submit" value="Submit Text">
+
+	</form>
+</div>
+{% endif %}
+
+{% if not admin %}
+
+<center>
+	<br> </br>
+ <h3> Sorry! This page is only accessiable by admin. </h3>
+
+</center>
+
+{% endif %}
+
+{% endif %}
+
+{% if not logged_in %}
+<center>
+<br> </br>
+
+	 <h3> Please Login. Disclaimer this website is only available to users. </h3>
+
+</center>
+{% endif %}
+
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+
+{% endblock %}

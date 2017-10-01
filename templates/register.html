@@ -1,0 +1,101 @@
+
+{% extends "header.html" %}
+{% block body %}
+{% if not logged_in %}
+<body>
+	
+	<div class="container-fluid" style="padding-left: 150px; min-height: 100%;">
+		<br>
+			<h4> Please Register: </h4>
+
+			<form action="http://localhost:1989/register/" class="form-inline" method="post">
+
+			<h5> Name: </h5>
+
+				<input type="text" class="form-control" placeholder="Firstname" name="firstname" value="{{request.form.firstname}}">
+				<input type="text" class="form-control" placeholder="Lastname" name="lastname" value="{{request.form.lastname}}">
+								<br> </br>
+
+				{{ error1 }} <br>
+				{{ error2 }}
+
+			<h5> Login Credentials: </h5>
+			 	<input type="text" class="form-control" placeholder="Username" name="username" value="{{request.form.username}}"> 
+
+				<input type="password" class="form-control" placeholder="Password" name="password" value="{{request.form.password}}">
+
+				<br> </br>
+
+				{{ error3 }} <br>
+				{{ error4 }}
+
+			<h5> Email: </h5>
+
+				<input type="text" class="form-control" placeholder="Email" name="email" value="{{request.form.email}}">
+
+				<br> </br>
+
+				{{ error5 }}
+
+			<h5> Address: </h5>
+
+				<input type="text" class="form-control" placeholder="Street Address" name="streetaddress" value="{{request.form.streetaddress}}">
+
+				<input type="text" class="form-control" placeholder="City" name="city" value="{{request.form.city}}">
+
+				<br> </br>
+				{{ error6 }} <br>
+				{{ error7 }} 
+			<h5> Zipcode and State: </h5>
+
+				<input type="text" class="form-control" placeholder="Zipcode" name="zipcode" value="{{request.form.zipcode}}">
+
+				<input type="text" class="form-control" placeholder="State" name="state" value="{{request.form.state}}">
+
+				<br> </br>
+				{{ error8 }}
+				{{ error9 }}
+
+			<h5> Phone Number: </h5>
+			<p>Must agree to recieving text messages (emergency, needed notification)</p>
+
+				<input type="text" class="form-control" placeholder="Phone Number" name="phonenumber" value="{{request.form.phonenumber}}">
+
+				<br> </br>
+								{{ error10 }}
+
+			<h5> Any Special Needs? </h5>
+			<p> During an emergency do you need anything like wheelchairs, airpumps, etc. (If none write N/A)</p>
+
+				<input type="text" class="form-control" placeholder="Special Needs" name="specialneeds" value="{{request.form.specialneeds}}">
+
+				<br> </br>
+								{{ error11 }} <br>
+
+			<input class="btn btn-default" type="submit" value="Register">
+				<br> </br>
+
+			</form>
+
+	</div>
+</body>
+{% endif %}
+{% if logged_in %}
+<div >
+	<center> <p>Please log out to create an account</p> </center>
+	<br> </br>
+		<br> </br>
+	<br> </br>
+	<br> </br>
+	<br> </br>
+	<br> </br>
+	<br> </br>
+	<br> </br>
+	<br> </br>
+	<br> </br>
+	<br> </br>
+
+</div>
+{% endif %}
+
+{% endblock %}

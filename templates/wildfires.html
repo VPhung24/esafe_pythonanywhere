@@ -1,0 +1,56 @@
+{% extends "header.html" %}
+
+{% block body %}
+    <div class="bread_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:1989/">Home</a></li>
+                        <li class = "active">Emergency Preparedness</li>
+                        <li class="active">Wildfires</li>
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="site-main page-main">
+        <div class="container">
+            <div class="row">
+                <section class="page col-sm-9">
+                    <h2 class="page-title">WILDFIRES</h2>
+                    <div class = "entry">
+                        <div id = "WHAT_IS_A_WILDFIRE">
+                        <h4>WHAT IS A WILDFIRE?</h4>
+                            <p> A wildfire is an unplanned fire burning in a natural wildlife area. Wildfires can cause death or injury to people and animals, and can damage or destroy structures. Wildfires can usually be spotted due to the heavy smoke. High winds and low rainfall can make areas more susceptible to wildfires. They commonly occur in dry, warm areas such as southern California.</p>
+                        </div>
+
+                        <div id = "IN_GENERAL">
+                        <h4>IN GENERAL:</h4>
+                            <p> Spot a wildfire by hearing updates on the radio/TV or seeing smoke. Call the police if you see smoke - don't assume someone else has already called. Keep doors and windows closed tightly and turn the air conditioner on to circulate clean air. Keep hoses, an ax, and a shovel handy in case you need to put out fires on your own. Just in case, prepare your car for a quick getaway.</p>
+
+                            <p> Turn on your radio/TV, and stay alert for Wireless Emergency Alerts. Listen to officials and their instructions.</p>
+                        </div>
+
+                        <div id = "AFTER_THE_FIRE">
+                        <h4>AFTER THE FIRE:</h4>
+                            <p> Turn on your radio/TV, and stay alert for Wireless Emergency Alerts. Listen to officials and their instructions. Photograph any damage done to your property for insurance purposes. Contact your friends and family. Seek first aid if needed. Look at our emergency contact page for more.</p>   
+
+                            <p> When entering your home, wear a dusk mask certified by NIOSH. Dispose of any food damaged by the fire, and sterilize anything else damaged by the fire. </p>
+                        </div>
+                    </div>
+                </section>
+                <aside class="sidebar col-sm-3">
+                    <div class="widget">
+                        <h4>SERVICES</h4>
+                        <ul>
+                            <li><a href="#WHAT_IS_A_WILDFIRE" title="What is a Wildfire">What is a Wildfire</a></li>
+                            <li><a href="#IN_GENERAL" title="In General">In General</a></li>
+                            <li><a href="#AFTER_THE_FIRE" title="After the Fire">After the Fire</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+{% endblock %}

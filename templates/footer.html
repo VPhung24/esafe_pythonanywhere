@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<footer class="site-footer" id = footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 fbox">
+                <h4>ESAFE</h4>
+                <p class="text">Making the world safer for everyone.</p>
+                <ul class="list-inline">
+                    <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://www.gmail.com"><i class="fa fa-envelope-o"></i></a></li>                        
+                </ul>
+            </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 fbox">
+	                <h4>DISASTERS</h4>
+	                    <ul class="big">
+	                        <li><p class="text">Earthquakes</p>
+	                        <li><p class="text">Flooding</p>
+	                        <li><p class="text">Landslides</p>
+	                        <li><p class="text">Wildfires</p>
+	                        <li><p class="text">Storms</p>
+	                        <li><p class="text">Tsunami</p>
+	                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 fbox">
+                    <h4>OTHER RESOURCES</h4>
+                    <ul class="big">
+                        <li><a href="http://www.nfpa.org/" title="NFPA">NFPA</a></li>
+                        <li><a href="https://www.ready.gov/prepare-for-emergencies" title="Ready.org">Ready</a></li>
+                        <li><a href="http://www.searo.who.int/entity/emergencies/EHA_pocketguide.pdf?ua=1" title="World Health Organization">WHO</a></li>
+                        <li><a href="http://www.improvenet.com/a/home-emergency-disaster-safety" title="Improvenet">Improvenet</a></li>
+                        <li><a href="http://www.nsc.org/learn/safety-knowledge/Pages/safety-at-home-emergency-preparedness.aspx" title="National Health Council">NHC</a></li>
+                        <li><a href="https://www.redfin.com/blog/2016/06/the-homeowners-ultimate-guide-to-natural-disaster-safety.html" title="Redfin">Redfin</a></li>
+                        <li><a href="https://www.pge.com/en_US/safety/emergency-preparedness/natural-disaster/natural-disaster.page" title="PG&E">PGE</a></li>
+                        <li><a href="http://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies" title="Red Cross">Red Cross</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 fbox">
+                    <h4>CONTACT CITY OF HAYWARD</h4>
+                    <p><a href="http://maps.google.com/?q="><span class = "glyphicon glyphicon-flag" aria-hidden="true"></span> 777 B Street Hayward, CA 94541</p>
+                    <p><a href="tel:510-583-4000"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> (510) 583-4000</a></p>
+                    <p><a href="mailto:info@hayward-ca.gov"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  info@hayward-ca.gov</a></p>
+                </div>
+            </div>
+        </div>
+        <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="pull-left">&copy;ESAFE </p>
+                    </div>
+                    <div class="col-md-8">
+                        <ul class="list-inline navbar-right">
+                            <li><a href="http://localhost:1989/">HOME</a></li>
+                            <li><a href="http://localhost:1989/earthquakes/">EARTHQUAKES</a></li>
+                            <li><a href="http://localhost:1989/flooding/">FLOODING</a></li>
+                            <li><a href="http://localhost:1989/landslides/">LANDSLIDES</a></li>
+                            <li><a href="http://localhost:1989/wildfires/">WILDFIRES</a></li>
+                            <li><a href="http://localhost:1989/preparation/">PREPARATION</a></li>
+                            <li><a href="http://localhost:1989/emergency_contact/">EMERGENCY CONTACT</a></li>
+                            <li><a href="http://localhost:1989/why/">WHY</a></li>
+                            <li><a href="http://localhost:1989/login/"><LI>LOGIN / REGISTER</LI></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $('.carousel[data-type="multi"] .item').each(function(){
+          var next = $(this).next();
+          if (!next.length) {
+            next = $(this).siblings(':first');
+          }
+          next.children(':first-child').clone().appendTo($(this));
+
+          for (var i=0;i<4;i++) {
+            next=next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+
+            next.children(':first-child').clone().appendTo($(this));
+          }
+        });        
+    </script>
+</html>

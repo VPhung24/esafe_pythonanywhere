@@ -1,0 +1,84 @@
+{% extends "header.html" %}
+
+{% block body %}
+    <div class="bread_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:1989/">Home</a></li>
+                        <li class = "active">Emergency Preparedness</li>
+                        <li class="active">Earthquakes</li>
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="site-main page-main">
+        <div class="container">
+            <div class="row">
+                <section class="page col-sm-9">
+                    <h2 class="page-title">PREPARATION</h2>
+                    <div class = "entry">
+                        <div id = "EMERGENCY_KIT">
+                        <h4>EMERGENCY KIT</h4>
+                            <p> Make an emergency kit in an quick-to-grab, "to-go" bag with the following items:
+                                <ul>
+                                    <li>Water</li>
+                                    <li>Non-perishable food, preferably canned</li>
+                                    <li>First Aid kit</li>
+                                    <li>Additional medical need supplies</li>
+                                    <li>Flashlight</li>
+                                    <li>Emergency blankets/sleeping bags</li>
+                                    <li>Duct tape</li>
+                                    <li>Extra clothing</li>
+                                    <li>Battery powered radio</li>
+                                    <li>Cell phone chargers</li>
+                                    <li>Extra cash</li>
+                                    <li>Maps of the area</li>
+                                    <li>Pocket knife</li>
+                                    <li>Scissors</li>
+                                    <li>Can opener</li>
+                                    <li>Matches</li>
+                                    <li>Copies of personal documents</li>
+                                    <li>Relatives' and friends' contact information</li>
+                                </ul>
+                            </p>
+                        </div>
+
+                        <div id = "PLAN">
+                        <h4>PLAN</h4>
+                            <p> Plan with your household members what to do in various situations. Identify how you'll work together as a team. If you are separated during an emergency, determine a location where all the members can go near your home. Practice at least twice a year with various emergencies in mind. Remember to turn on your radio/TV during the emergency, and stay alert for Wireless Emergency Alerts. Listen to officials and their instructions as well.</p>
+                        </div>
+
+                        <div id = "STEPS_TO_TAKE">
+                        <h4>STEPS TO TAKE</h4>
+                            <p> To prepare your home for an earthquake, bolt all heavy furniture. Avoid placing pictures or mirrors over beds or couches. Secure overhead light fixtures and fans with braces to prevent them from falling. Repare any cracks in your foundation or ceiling to minimize the damage that could occur during an earthquake.</p>
+
+                            <p> To protect your home from flooding, seal basement walls with waterproof compounds. Check your water valves to prevent unsanitary water from entering your pipes. Install sump pumps to help your home after the flood. (Sump pumps help to remove accumulated water, and can easily restore a home by eliminating the water.) </p>
+
+                            <p> To prepare your home for a landslide, avoiding building a home near mountains in general. Consult professionals on upgrading your home to be more resistant to a landslide. In a mudslide area, build channels to direct the mud away from homes/buildings.</p>
+
+                            <p> To prepare your home for a wildfire, clean the outside of your home regularly from leaves and plants. Install dual-pane windows (they are hard to melt). Build a fire resistant fence of brick or stucco. Build a hose system that can easily be used to manage small fires. Build your home using more fire proof materials, such as stucco, brick, and fiber cement. Cover vents with metal mesh to prevent embers from entering.</p>
+
+                        <div id = "RESEARCH">
+                        <h4>RESEARCH</h4>
+                            <p> Understand what kinds of natural disasters occur most prominently in your area.<a href = "http://yourlocalsecurity.com/natural-disaster-safety"> Your Local Security </a> shows what kinds of natural disasters occur in your area. In California, earthquakes and wildfires are the most common disasters. Check out our emergency advice to learn more about what to do during a natural disaster!</p>
+                        </div>
+                    </div>
+                </section>
+                <aside class="sidebar col-sm-3">
+                    <div class="widget">
+                        <h4>SERVICES</h4>
+                        <ul>
+                            <li><a href="#EMERGENCY_KIT" title="Emergency Kit">Emergency Kit</a></li>
+                            <li><a href="#PLAN" title="Plan">Plan</a></li>
+                            <li><a href="#STEPS_TO_TAKE" title="Steps to Take">Steps to Take</a></li>
+                            <li><a href="#RESEARCH" title="Research">Research</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+{% endblock %}

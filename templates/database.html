@@ -1,0 +1,157 @@
+{% extends "header.html" %}
+
+{% block body %}
+{% if logged_in %}
+{% if admin %}
+
+    <div class="bread_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:1989/">Home</a></li>
+                        <li class = "active">Login</li>
+                        <li class="active">Admin</li>
+                        <li class="active">Database</li>
+
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="site-main page-main">
+        <div class="container">
+            <div class="row">
+                <h2 class="page-title">Data</h2>
+
+                    <table style="width:100%;" >
+                    <tr style="border-bottom: 0.1px solid black">
+                        <th>
+                            UID
+                        </th>
+                        <th>
+                            Firstname
+                        </th> 
+                        <th>
+                            Lastname
+                        </th>
+                        <th>
+                            Address
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Special Needs
+                        </th>
+                        <th>
+                            Phone Number
+                        </th>
+                        </tr>
+                        {% for person in results %}
+                        <tr style="border-bottom: 0.1px solid black">
+                        <td>
+
+                            {{ person['uid'] }}
+                        </td>
+                        <td>
+                            {{ person['firstname'] }}
+                        </td> 
+                        <td>
+                            {{ person['lastname'] }}
+                        </td>
+                        <td>
+                            {{ person['streetaddress'] }} {{ person['city'] }}, {{ person['state'] }} {{ person['zipcode'] }}
+                        </td>
+                        <td>
+                            {{ person['email'] }}
+                        </td>
+                        <td>
+                            {{ person['special_needs'] }}
+                        </td>
+                        <td>
+                            {{ person['phonenumber'] }}
+                        </td>
+                        </tr>
+                         {% endfor %}
+
+
+                    </table>
+                        <br></br>
+        <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+        <br></br>
+    <br></br>
+    <br></br>
+
+                
+
+        </div>
+    </main>
+
+{% endif %}
+
+{% if not admin %}
+    <div class="bread_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:1989/">Home</a></li>
+                        <li class = "active">Login</li>
+                        <li class="active">Database</li>
+
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="container";">
+    <center>
+        <br> </br>
+
+        <h4> This page is not available to users whom are not admin </h4>
+
+
+    </center>
+</div>
+{% endif %}
+{% endif %}
+
+{% if not logged_in %}
+    <div class="bread_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:1989/">Home</a></li>
+                        <li class="active">Database</li>
+
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>
+                <h4> This page is not available to users whom are not logged in and are admins </h4>
+
+    </center>
+
+{% endif %}
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+<br> </br>
+{% endblock %}
+</div>
+</main>

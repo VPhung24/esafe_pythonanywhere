@@ -1,0 +1,70 @@
+{% extends "header.html" %}
+
+{% block body %}
+    <div class="bread_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:1989/">Home</a></li>
+                        <li class="active">Emergency Contact</li>
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="site-main page-main">
+        <div class="container">
+            <div class="row">
+                <section class="page col-sm-9">
+                    <h2 class="page-title">EMERGENCY CONTACT</h2>
+                    <div class = "entry">
+                        <p><a href="tel:911"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Call the police: 911</a></p>
+
+                        <p><a href="tel:510-293-7000"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Call a dispatch (non-emergency): (510) 293-7000</a></p>
+
+                        <p><a href="tel:510-583-4000"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Call the City of Hayward: (510) 583-4000</a></p>
+
+                        <p><a href="https://www.google.org/publicalerts"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> Look on Google's Public Alerts.</a></p>
+
+                        <p><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i> Send out your location on Facebook and ask for help.</a></p>
+
+                        <p><a href="http://www.nws.noaa.gov/nwr/"><i class="fa fa-music" aria-hidden="true"></i> Listen to NOAA Weather Station at 162.400, 162.425, 162.450, 162.475, 162.500, 162.525, or 162.550 MHz on the VHF public service band for more information. </a></p>
+
+                        <p><a href="https://www.fema.gov/integrated-public-alert-warning-system"><i class="fa fa-mobile" aria-hidden="true"></i> Stay on alert for Wireless Emergency Alerts. Read more here. </a></p> 
+
+                        <p><a href="https://www.fema.gov/text-messages"><i class="fa fa-mobile" aria-hidden="true"></i> Text 43362 (4FEMA) the message: "SHELTER" + your ZIP code to find a nearby shelter. For example, "shelter 12345" would be texted if your ZIP code was 12345. Read more here.</a></p>
+
+                        <p><a href="https://www.fema.gov/text-messages"><i class="fa fa-mobile" aria-hidden="true"></i> Text 43362 (4FEMA) the message: "DRC" + your ZIP code to find a nearby Disaster Recovery Center. For example, "DRC 12345" would be texted if your ZIP code was 12345. Read more here.</a></p>
+
+                        <a href = "https://www.google.com/maps/@"><p>Click the button to get your location.</p></a>
+                            <button onclick="getLocation()">Try It</button>
+                                <p id="demo"></p>
+                                    <script>
+                                        var x = document.getElementById("demo");
+                                        function getLocation() 
+                                        {
+                                            if (navigator.geolocation) 
+                                            {
+                                             navigator.geolocation.getCurrentPosition(showPosition);
+                                            } 
+                                            else 
+                                            { 
+                                                x.innerHTML = "Geolocation is not supported by this browser.";
+                                            }
+                                        }
+                                        function showPosition(position) 
+                                        {
+                                            var lat = '' + position.coords.latitude;
+                                            var long = '' + position.coords.longitude;
+                                            var str = "Find your location!";
+                                            var result = str.link("https://www.google.com/maps/@" + lat + ',' + long);
+                                            x.innerHTML = result;
+                                        }
+                                    </script>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+{% endblock %}
