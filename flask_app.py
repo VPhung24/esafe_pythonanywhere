@@ -4,6 +4,8 @@ from flask import Flask, render_template, flash, request, url_for, redirect, ses
 from functools import wraps
 import MySQLdb
 import MySQLdb.cursors
+import os
+from twilio.rest import Client
 
 # Initialize Flask app with the template folder address
 app = Flask(__name__, template_folder='templates')
@@ -353,6 +355,29 @@ def wildfires_route():
 		logged_in = False
 		return render_template('wildfires.html', logged_in = logged_in)
 
+account_sid = "ACac57689c5547072a1d467d0aa09e496b"
+auth_token = "d6e71203ae75a31029fa373ceaab7fd0"
+
+client = Client(account_sid, auth_token)
+@app.route('/text/', methods=["GET","POST"])
+def text_page():
+	if request.method == "POST":
+		cursor = db.cursor()
+		cursor.execute('SELECT phonenumber FROM users')
+		phonen_dict = cursor.fetchall()
+		my_test_prompt = request.form['text']
+		for numbers in phonen_dict:
+			client.messages.create(
+				to = numbers['phonenumber'],
+				from_= "+15104221809",
+				body= my_test_prompt
+			)
+	if 'user' in session:
+		logged_in = True
+		return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
+	else:
+		logged_in = False
+		return render_template('text.html', logged_in = logged_in)
 # if __name__ == '__main__':
 #     # listen on external IPs
 #     app.run(host=config.env['host'], port=config.env['port'], debug=True)
