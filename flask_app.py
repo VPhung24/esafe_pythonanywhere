@@ -3,19 +3,33 @@ import sys
 from flask import Flask, render_template, flash, request, url_for, redirect, session
 from functools import wraps
 import MySQLdb
+import MySQLdb.cursors
 
 # Initialize Flask app with the template folder address
 app = Flask(__name__, template_folder='templates')
 app.config["DEBUG"] = True
 
-conn = MySQLdb.connect("vphung.mysql.pythonanywhere-services.com", "vphung", "taylorswiftvivian", "vphung$esafe")
+def connect_to_database():
+  options = {
+    'host': 'vphung.mysql.pythonanywhere-services.com',
+    'user': 'vphung',
+    'password': 'taylorswiftvivian',
+    'db': 'vphung$esafe',
+    'cursorclass': MySQLdb.cursors.DictCursor
+  }
+  db = MySQLdb.connect(**options)
+  db.autocommit(True)
+  return db
+
+db = connect_to_database()
+
 @app.route('/database/')
 def database_path():
-    conn = MySQLdb.connect("vphung.mysql.pythonanywhere-services.com", "vphung", "taylorswiftvivian", "vphung$esafe")
-    cursor = conn.cursor()
+    db = connect_to_database()
+    cursor = db.cursor()
     cursor.execute('SELECT uid, firstname, lastname, username, city, state, streetaddress, email, password, special_needs, phonenumber, zipcode FROM users')
     results = cursor.fetchall()
-    print(results)
+    db.close()
     print_str = "<table>"
     for result in results:
         print_str += "<tr><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><tr>" % (result['uid'], result['firstname'], result['lastname'], result['username'], result['city'], result['state'], result['streetaddress'], result['email'], result['password'], result['special_needs'], result['phonenumber'], result['zipcode'])
@@ -105,9 +119,9 @@ def login_page():
     attempted_username = request.form['username']
     attempted_password = request.form['password']
 
-    conn = MySQLdb.connect("vphung.mysql.pythonanywhere-services.com", "vphung", "taylorswiftvivian", "vphung$esafe")
-    cursor = conn.cursor()
-    cursor.execute('SELECT username FROM users WHERE username = %s', (attempted_username))
+    db = connect_to_database()
+    cursor = db.cursor()
+    cursor.execute('SELECT username FROM users WHERE username = %s', [attempted_username])
     test_for_username = cursor.fetchall()
     error = '' # if username exists, test that the password matches
     if not test_for_username:
@@ -120,73 +134,72 @@ def login_page():
         session['logged_in'] = False
         return render_template("login.html", error = error, logged_in = session['logged_in'])
       else:
-        conn = MySQLdb.connect("vphung.mysql.pythonanywhere-services.com", "vphung", "taylorswiftvivian", "vphung$esafe")
-        cursor = conn.cursor()
-        cursor.execute('SELECT password FROM users WHERE username = %s', (attempted_username))
+        cursor = db.cursor()
+        cursor.execute('SELECT password FROM users WHERE username = %s', [attempted_username])
         results = cursor.fetchall()
-        print(results)
-        print(attempted_password)
-        results = results[0]['password']
+        results = results[0][0]
 
         if results == attempted_password:
           session['logged_in'] = True
           session['user'] = request.form['username']
 
           #firstname
-          cursor.execute('SELECT firstname FROM users WHERE username = %s', (attempted_username))
+          cursor.execute('SELECT firstname FROM users WHERE username = %s', [attempted_username])
           firstname_dict = cursor.fetchall()
-          session['firstname'] = firstname_dict[0]['firstname']
+          session['firstname'] = firstname_dict[0][0]
 
           #lastname
-          cursor.execute('SELECT lastname FROM users WHERE username = %s', (attempted_username))
+          cursor.execute('SELECT lastname FROM users WHERE username = %s', [attempted_username])
           lastname_dict = cursor.fetchall()
-          session['lastname'] = lastname_dict[0]['lastname']
+          session['lastname'] = lastname_dict[0][0]
 
           #city
-          cursor.execute('SELECT city FROM users WHERE username = %s', (attempted_username))
+          cursor.execute('SELECT city FROM users WHERE username = %s', [attempted_username])
           city_dict = cursor.fetchall()
-          session['city'] = city_dict[0]['city']
+          session['city'] = city_dict[0][0]
 
           #zipcode
-          cursor.execute('SELECT zipcode FROM users WHERE username = %s', (attempted_username))
+          cursor.execute('SELECT zipcode FROM users WHERE username = %s', [attempted_username])
           zipcode_dict = cursor.fetchall()
-          session['zipcode'] = zipcode_dict[0]['zipcode']
+          session['zipcode'] = zipcode_dict[0][0]
 
           #state
-          cursor.execute('SELECT state FROM users WHERE username = %s', (attempted_username))
+          cursor.execute('SELECT state FROM users WHERE username = %s', [attempted_username])
           state_dict = cursor.fetchall()
-          session['state'] = state_dict[0]['state']
+          session['state'] = state_dict[0][0]
 
           #streetaddress
-          cursor.execute('SELECT streetaddress FROM users WHERE username = %s', (attempted_username))
+          cursor.execute('SELECT streetaddress FROM users WHERE username = %s', [attempted_username])
           streetaddress_dict = cursor.fetchall()
-          session['streetaddress'] = streetaddress_dict[0]['streetaddress']
+          session['streetaddress'] = streetaddress_dict[0][0]
 
           #email
-          cursor.execute('SELECT email FROM users WHERE username = %s', (attempted_username))
+          cursor.execute('SELECT email FROM users WHERE username = %s', [attempted_username])
           email_dict = cursor.fetchall()
-          session['email'] = email_dict[0]['email']
+          session['email'] = email_dict[0][0]
 
           #special needs
-          cursor.execute('SELECT special_needs FROM users WHERE username = %s', (attempted_username))
+          cursor.execute('SELECT special_needs FROM users WHERE username = %s', [attempted_username])
           specialneeds_dict = cursor.fetchall()
-          session['special_needs'] = specialneeds_dict[0]['special_needs']
+          session['special_needs'] = specialneeds_dict[0][0]
 
           #phonenumber
-          cursor.execute('SELECT phonenumber FROM users WHERE username = %s', (attempted_username))
+          cursor.execute('SELECT phonenumber FROM users WHERE username = %s', [attempted_username])
           phonenumber_dict = cursor.fetchall()
-          session['phonenumber'] = phonenumber_dict[0]['phonenumber']
+          session['phonenumber'] = phonenumber_dict[0][0]
 
           #admin
-          cursor.execute('SELECT uid FROM users WHERE username = %s', (attempted_username))
+          cursor.execute('SELECT uid FROM users WHERE username = %s', [attempted_username])
           uid_dict = cursor.fetchall()
-          uid = uid_dict[0]['uid']
+          uid = uid_dict[0][0]
           admin = False
 
           #test
           cursor.execute('SELECT phonenumber FROM users')
           phonen_dict = cursor.fetchall()
           print(phonen_dict)
+
+          db.close()
 
           if uid < 30:
             admin = True
@@ -310,9 +323,10 @@ def register_page():
 			error.append("specialneeds")
 
 		if (len(error) == 0):
-		    conn = MySQLdb.connect("vphung.mysql.pythonanywhere-services.com", "vphung", "taylorswiftvivian", "vphung$esafe")
-		    cursor = conn.cursor()
+		    db = connect_to_database()
+		    cursor = db.cursor()
 		    cursor.execute('INSERT into users(firstname, lastname, username, city, state, streetaddress, email, password, special_needs, phonenumber, zipcode) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (my_firstname, my_lastname, my_username, my_city, my_state, my_streetaddress, my_email, my_password, my_specialneeds, my_phonenumber, my_zipcode))
+		    db.commit()
 		    return redirect("http://vphung.pythonanywhere.com/login/")
 	if 'user' in session:
 		logged_in = True
