@@ -2,29 +2,19 @@
 import sys
 from flask import Flask, render_template, flash, request, url_for, redirect, session
 from functools import wraps
-from flask_sqlalchemy import SQLAlchemy
+import MySQLdb
 
 # Initialize Flask app with the template folder address
 app = Flask(__name__, template_folder='templates')
 app.config["DEBUG"] = True
 
-SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-    username="vphung",
-    password="taylorswiftvivian",
-    hostname="vphung.mysql.pythonanywhere-services.com",
-    databasename="vphung$esafe",
-)
-app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)
-
-@app.route("/database/")
+conn = MySQLdb.connect("vphung.mysql.pythonanywhere-services.com", "vphung", "taylorswiftvivian", "vphung$esafe")
+@app.route('/database/')
 def database_path():
-    db = SQLAlchemy(app)
-    cur = db.cursor()
-    cur.execute('SELECT uid, firstname, lastname, username, city, state, streetaddress, email, password, special_needs, phonenumber, zipcode FROM users')
-    results = cur.fetchall()
+    conn = MySQLdb.connect("vphung.mysql.pythonanywhere-services.com", "vphung", "taylorswiftvivian", "vphung$esafe")
+    cursor = conn.cursor()
+    cursor.execute('SELECT uid, firstname, lastname, username, city, state, streetaddress, email, password, special_needs, phonenumber, zipcode FROM users')
+    results = cursor.fetchall()
     print(results)
     print_str = "<table>"
     for result in results:
@@ -48,6 +38,7 @@ def main_route():
         return render_template('index.html', logged_in = logged_in)
 
 app.secret_key = 'vivian and serina is cool'
+
 @app.errorhandler(404)
 def page_not_found(e):
 	options = {
@@ -71,12 +62,12 @@ def slashboard():
 
 @app.route("/earthquakes/")
 def earthquake_route():
-# 	if 'user' in session:
-# 		logged_in = True
-# 		return render_template('earthquakes.html', logged_in = logged_in, username = session['user'])
-# 	else:
-# 		logged_in = False
-	return render_template('earthquakes.html')
+	if 'user' in session:
+		logged_in = True
+		return render_template('earthquakes.html', logged_in = logged_in, username = session['user'])
+	else:
+		logged_in = False
+		return render_template('earthquakes.html', logged_in = logged_in)
 
 @app.route("/emergency_contact/")
 def emergency_contact_route():
@@ -105,7 +96,7 @@ def landslides_route():
 		logged_in = False
 		return render_template('landslides.html', logged_in = logged_in)
 
-@app.route("/login/", methods=["GET","POST"])
+@app.route('/login/', methods=["GET","POST"])
 def login_page():
 
   # session.pop('user', None)
@@ -114,7 +105,8 @@ def login_page():
     attempted_username = request.form['username']
     attempted_password = request.form['password']
 
-    cursor = db.cursor()
+    conn = MySQLdb.connect("vphung.mysql.pythonanywhere-services.com", "vphung", "taylorswiftvivian", "vphung$esafe")
+    cursor = conn.cursor()
     cursor.execute('SELECT username FROM users WHERE username = %s', (attempted_username))
     test_for_username = cursor.fetchall()
     error = '' # if username exists, test that the password matches
@@ -128,7 +120,8 @@ def login_page():
         session['logged_in'] = False
         return render_template("login.html", error = error, logged_in = session['logged_in'])
       else:
-        cursor = db.cursor()
+        conn = MySQLdb.connect("vphung.mysql.pythonanywhere-services.com", "vphung", "taylorswiftvivian", "vphung$esafe")
+        cursor = conn.cursor()
         cursor.execute('SELECT password FROM users WHERE username = %s', (attempted_username))
         results = cursor.fetchall()
         print(results)
@@ -138,7 +131,6 @@ def login_page():
         if results == attempted_password:
           session['logged_in'] = True
           session['user'] = request.form['username']
-
 
           #firstname
           cursor.execute('SELECT firstname FROM users WHERE username = %s', (attempted_username))
@@ -224,7 +216,7 @@ def logout_page():
 	session.pop('state', None)
 	session.pop('streetaddress', None)
 	session.pop('email', None)
-	return redirect("http://localhost:1989/login/")
+	return redirect("http://vphung.pythonanywhere.com/login/")
 
 @app.route("/preparation/")
 def preparation_route():
@@ -235,7 +227,7 @@ def preparation_route():
 		logged_in = False
 		return render_template('preparation.html', logged_in = logged_in)
 
-@app.route("/register/", methods=["GET","POST"])
+@app.route('/register/', methods=["GET","POST"])
 def register_page():
 	error = []
 	error1 = ""
@@ -318,10 +310,10 @@ def register_page():
 			error.append("specialneeds")
 
 		if (len(error) == 0):
-			cursor = db.cursor()
-			print(error)
-			cursor.execute('INSERT into users(firstname, lastname, username, city, state, streetaddress, email, password, special_needs, phonenumber, zipcode) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (my_firstname, my_lastname, my_username, my_city, my_state, my_streetaddress, my_email, my_password, my_specialneeds, my_phonenumber, my_zipcode))
-			return redirect("http://localhost:1989/login/")
+		    conn = MySQLdb.connect("vphung.mysql.pythonanywhere-services.com", "vphung", "taylorswiftvivian", "vphung$esafe")
+		    cursor = conn.cursor()
+		    cursor.execute('INSERT into users(firstname, lastname, username, city, state, streetaddress, email, password, special_needs, phonenumber, zipcode) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (my_firstname, my_lastname, my_username, my_city, my_state, my_streetaddress, my_email, my_password, my_specialneeds, my_phonenumber, my_zipcode))
+		    return redirect("http://vphung.pythonanywhere.com/login/")
 	if 'user' in session:
 		logged_in = True
 		return render_template("register.html", logged_in = logged_in, username = session['user'])
@@ -347,6 +339,6 @@ def wildfires_route():
 		logged_in = False
 		return render_template('wildfires.html', logged_in = logged_in)
 
-if __name__ == '__main__':
-    # listen on external IPs
-    app.run(host=config.env['host'], port=config.env['port'], debug=True)
+# if __name__ == '__main__':
+#     # listen on external IPs
+#     app.run(host=config.env['host'], port=config.env['port'], debug=True)
