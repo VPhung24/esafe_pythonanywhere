@@ -4,10 +4,6 @@ from flask import Flask, render_template, flash, request, url_for, redirect, ses
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 
-# import extensions
-# import controllers
-# import config
-
 # Initialize Flask app with the template folder address
 app = Flask(__name__, template_folder='templates')
 app.config["DEBUG"] = True
@@ -23,16 +19,33 @@ app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
-# def main_route():
-    # if 'user' in session:
-    #     logged_in = True
-    #     return render_template('index.html', logged_in = logged_in, username = session['user'])
-    # else:
-    #     logged_in = False
-    #     return render_template('index.html', logged_in = logged_in)
+@app.route("/database/")
+def database_path():
+    db = SQLAlchemy(app)
+    cur = db.cursor()
+    cur.execute('SELECT uid, firstname, lastname, username, city, state, streetaddress, email, password, special_needs, phonenumber, zipcode FROM users')
+    results = cur.fetchall()
+    print(results)
+    print_str = "<table>"
+    for result in results:
+        print_str += "<tr><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><tr>" % (result['uid'], result['firstname'], result['lastname'], result['username'], result['city'], result['state'], result['streetaddress'], result['email'], result['password'], result['special_needs'], result['phonenumber'], result['zipcode'])
+    print_str += "</table>"
+    print(session['logged_in'])
+    if 'user' in session:
+        logged_in = True
+        return render_template("database.html", results = results, logged_in = logged_in, username = session['user'], admin = session['admin'])
+    else:
+        logged_in = False
+        return render_template("database.html", results = results, logged_in = logged_in)
+
 @app.route("/")
 def main_route():
-    return render_template("index.html")
+    if 'user' in session:
+        logged_in = True
+        return render_template('index.html', logged_in = logged_in, username = session['user'])
+    else:
+        logged_in = False
+        return render_template('index.html', logged_in = logged_in)
 
 app.secret_key = 'vivian and serina is cool'
 @app.errorhandler(404)
@@ -56,25 +69,6 @@ def slashboard():
 	except Exception as e:
 		return render_template("500.html", error = e)
 
-@app.route('/database/')
-def database_path():
-    db = connect_to_database()
-    cur = db.cursor()
-    cur.execute('SELECT uid, firstname, lastname, username, city, state, streetaddress, email, password, special_needs, phonenumber, zipcode FROM users')
-    results = cur.fetchall()
-    print(results)
-    print_str = "<table>"
-    for result in results:
-        print_str += "<tr><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><td> %s <br></td><tr>" % (result['uid'], result['firstname'], result['lastname'], result['username'], result['city'], result['state'], result['streetaddress'], result['email'], result['password'], result['special_needs'], result['phonenumber'], result['zipcode'])
-    print_str += "</table>"
-    print(session['logged_in'])
-    if 'user' in session:
-        logged_in = True
-        return render_template("database.html", results = results, logged_in = logged_in, username = session['user'], admin = session['admin'])
-    else:
-        logged_in = False
-        return render_template("database.html", results = results, logged_in = logged_in)
-
 @app.route("/earthquakes/")
 def earthquake_route():
 # 	if 'user' in session:
@@ -84,7 +78,7 @@ def earthquake_route():
 # 		logged_in = False
 	return render_template('earthquakes.html')
 
-@app.route('/emergency_contact/')
+@app.route("/emergency_contact/")
 def emergency_contact_route():
 	if 'user' in session:
 		logged_in = True
@@ -93,7 +87,7 @@ def emergency_contact_route():
 		logged_in = False
 		return render_template('emergency_contact.html', logged_in = logged_in)
 
-@app.route('/flooding/')
+@app.route("/flooding/")
 def flooding_route():
 	if 'user' in session:
 		logged_in = True
@@ -102,7 +96,7 @@ def flooding_route():
 		logged_in = False
 		return render_template("flooding.html" , logged_in = logged_in)
 
-@app.route('/landslides/')
+@app.route("/landslides/")
 def landslides_route():
 	if 'user' in session:
 		logged_in = True
@@ -111,7 +105,7 @@ def landslides_route():
 		logged_in = False
 		return render_template('landslides.html', logged_in = logged_in)
 
-@app.route('/login/', methods=["GET","POST"])
+@app.route("/login/", methods=["GET","POST"])
 def login_page():
 
   # session.pop('user', None)
@@ -219,7 +213,7 @@ def login_page():
     session['logged_in'] = False
     return render_template("login.html")
 
-@app.route('/logout/', methods=["GET","POST"])
+@app.route("/logout/", methods=["GET","POST"])
 def logout_page():
 	session['logged_in'] = False
 	session.pop('user', None)
@@ -232,7 +226,7 @@ def logout_page():
 	session.pop('email', None)
 	return redirect("http://localhost:1989/login/")
 
-@app.route('/preparation/')
+@app.route("/preparation/")
 def preparation_route():
 	if 'user' in session:
 		logged_in = True
@@ -241,7 +235,7 @@ def preparation_route():
 		logged_in = False
 		return render_template('preparation.html', logged_in = logged_in)
 
-@app.route('/register/', methods=["GET","POST"])
+@app.route("/register/", methods=["GET","POST"])
 def register_page():
 	error = []
 	error1 = ""
@@ -335,7 +329,7 @@ def register_page():
 		logged_in = False
 		return render_template("register.html", logged_in = logged_in, errors = error, error1 = error1, error2 = error2, error3 = error3, error4 = error4, error5 = error5, error6 = error6, error7 = error7, error8 = error8, error9 = error9, error10 = error10, error11 = error11)
 
-@app.route('/why/')
+@app.route("/why/")
 def why_route():
 	if 'user' in session:
 		logged_in = True
@@ -344,7 +338,7 @@ def why_route():
 		logged_in = False
 		return render_template('why.html', logged_in = logged_in)
 
-@app.route('/wildfires/')
+@app.route("/wildfires/")
 def wildfires_route():
 	if 'user' in session:
 		logged_in = True
