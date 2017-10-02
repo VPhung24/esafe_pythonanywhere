@@ -1,11 +1,14 @@
 # A very simple Flask Hello World app for you to get started with...
 import sys
 from flask import Flask, render_template, flash, request, url_for, redirect, session
+from flask import *
 from functools import wraps
 import MySQLdb
 import MySQLdb.cursors
 import os
 from twilio.rest import Client
+from requests import Request, Session
+from twilio.http.response import Response
 
 # Initialize Flask app with the template folder address
 app = Flask(__name__, template_folder='templates')
@@ -362,9 +365,11 @@ client = Client(account_sid, auth_token)
 @app.route('/text/', methods=["GET","POST"])
 def text_page():
 	if request.method == "POST":
+		db = connect_to_database()
 		cursor = db.cursor()
 		cursor.execute('SELECT phonenumber FROM users')
 		phonen_dict = cursor.fetchall()
+		db.close()
 		my_test_prompt = request.form['text']
 		for numbers in phonen_dict:
 			client.messages.create(
@@ -378,6 +383,7 @@ def text_page():
 	else:
 		logged_in = False
 		return render_template('text.html', logged_in = logged_in)
+
 # if __name__ == '__main__':
 #     # listen on external IPs
 #     app.run(host=config.env['host'], port=config.env['port'], debug=True)
