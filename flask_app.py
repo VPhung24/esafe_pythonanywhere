@@ -375,8 +375,7 @@ def text_page():
 			client.messages.create(
 				to = numbers['phonenumber'],
 				from_= "+15104221809",
-				body= my_test_prompt
-			)
+				body= my_test_prompt)
 		logged_in = True
 		return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
 	elif 'user' in session:
