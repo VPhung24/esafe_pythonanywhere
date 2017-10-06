@@ -364,17 +364,20 @@ auth_token = "d6e71203ae75a31029fa373ceaab7fd0"
 client = Client(account_sid, auth_token)
 @app.route('/text/', methods=["GET","POST"])
 def text_page():
-	if (request.method == "POST") and ('user' in session):
+	if request.method == "POST":
 		db = connect_to_database()
 		cursor = db.cursor()
 		cursor.execute('SELECT phonenumber FROM users')
 		phonen_dict = cursor.fetchall()
 		db.close()
-		my_test_prompt = request.form['text_mess']
+		my_test_prompt = request.form['text']
 		client.messages.create(
 			to = "5107558184",
-			from_ = "+15104221809",
-			body = my_test_prompt)
+			from_= "+15104221809",
+			body= my_test_prompt)
+			logged_in = True
+			return redirect("http://vphung.pythonanywhere.com/text/")
+	elif 'user' in session:
 		logged_in = True
 		return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
 	else:
