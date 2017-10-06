@@ -372,7 +372,7 @@ def text_page():
 		db.close()
 		my_test_prompt = request.form['text']
 		client.messages.create(
-			to = "+15107558184",
+			to = "5107558184",
 			from_= "+15104221809",
 			body= my_test_prompt)
 		logged_in = True
