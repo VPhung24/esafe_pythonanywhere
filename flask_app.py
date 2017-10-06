@@ -379,7 +379,7 @@ def text_page():
 					from_= "+15104221809",
 					body= my_test_prompt
 				)
-				return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
+		return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
 		else:
 			logged_in = True
 			return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
