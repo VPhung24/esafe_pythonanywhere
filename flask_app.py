@@ -10,7 +10,13 @@ from twilio.rest import Client
 from requests import Request, Session
 from twilio.rest import TwilioRestClient
 from twilio.http.response import Response
+from urlparse import urlparse
+from twilio.rest.resources import Connection
+from twilio.rest.resources.connection import PROXY_TYPE_HTTP
 
+proxy_url = os.environ.get("http_proxy")
+host, port = urlparse(proxy_url).netloc.split(":")
+Connection.set_proxy_info(host, int(port), proxy_type=PROXY_TYPE_HTTP)
 # Initialize Flask app with the template folder address
 app = Flask(__name__, template_folder='templates')
 app.config["DEBUG"] = True
