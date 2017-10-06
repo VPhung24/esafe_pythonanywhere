@@ -369,12 +369,12 @@ def text_page():
 		    db = connect_to_database()
 		    cursor = db.cursor()
 		    cursor.execute('SELECT phonenumber FROM users')
-			phonen_dict = cursor.fetchall()
-			db.close()
-			my_test_prompt = request.form['text']
-			for numbers in phonen_dict:
-				client.messages.create(
-					to = numbers['phonenumber'],
+		    phonen_dict = cursor.fetchall()
+		    db.close()
+		    my_test_prompt = request.form['text']
+		    for numbers in phonen_dict:
+		    	client.messages.create(
+		    		to = numbers['phonenumber'],
 					from_= "+15104221809",
 					body= my_test_prompt
 				)
