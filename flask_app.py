@@ -196,7 +196,7 @@ def login_page():
           #admin
           cursor.execute('SELECT uid FROM users WHERE username = %s', [attempted_username])
           uid_dict = cursor.fetchall()
-          uid = uid_dict[0]['']
+          uid = uid_dict[0]['uid']
           admin = False
 
           #test
