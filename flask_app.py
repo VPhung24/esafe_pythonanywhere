@@ -8,6 +8,7 @@ import MySQLdb.cursors
 import os
 from twilio.rest import Client
 from requests import Request, Session
+from twilio.rest import TwilioRestClient
 from twilio.http.response import Response
 
 # Initialize Flask app with the template folder address
