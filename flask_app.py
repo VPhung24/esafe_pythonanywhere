@@ -10,7 +10,7 @@ from twilio.rest import Client
 from requests import Request, Session
 from twilio.rest import TwilioRestClient
 from twilio.http.response import Response
-from urlparse import urlparse
+from urllib.parse import urlparse
 from twilio.rest.resources import Connection
 from twilio.rest.resources.connection import PROXY_TYPE_HTTP
 
