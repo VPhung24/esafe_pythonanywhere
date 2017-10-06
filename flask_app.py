@@ -142,7 +142,7 @@ def login_page():
         cursor = db.cursor()
         cursor.execute('SELECT password FROM users WHERE username = %s', [attempted_username])
         results = cursor.fetchall()
-        results = results[0]
+        results = results[0][0]
 
         if results == attempted_password:
           session['logged_in'] = True
