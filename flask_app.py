@@ -151,52 +151,52 @@ def login_page():
           #firstname
           cursor.execute('SELECT firstname FROM users WHERE username = %s', [attempted_username])
           firstname_dict = cursor.fetchall()
-          session['firstname'] = firstname_dict[0][0]
+          session['firstname'] = firstname_dict[0]['firstname']
 
           #lastname
           cursor.execute('SELECT lastname FROM users WHERE username = %s', [attempted_username])
           lastname_dict = cursor.fetchall()
-          session['lastname'] = lastname_dict[0][0]
+          session['lastname'] = lastname_dict[0]['lastname']
 
           #city
           cursor.execute('SELECT city FROM users WHERE username = %s', [attempted_username])
           city_dict = cursor.fetchall()
-          session['city'] = city_dict[0][0]
+          session['city'] = city_dict[0]['city']
 
           #zipcode
           cursor.execute('SELECT zipcode FROM users WHERE username = %s', [attempted_username])
           zipcode_dict = cursor.fetchall()
-          session['zipcode'] = zipcode_dict[0][0]
+          session['zipcode'] = zipcode_dict[0]['zipcode']
 
           #state
           cursor.execute('SELECT state FROM users WHERE username = %s', [attempted_username])
           state_dict = cursor.fetchall()
-          session['state'] = state_dict[0][0]
+          session['state'] = state_dict[0]['state']
 
           #streetaddress
           cursor.execute('SELECT streetaddress FROM users WHERE username = %s', [attempted_username])
           streetaddress_dict = cursor.fetchall()
-          session['streetaddress'] = streetaddress_dict[0][0]
+          session['streetaddress'] = streetaddress_dict[0]['streetaddress']
 
           #email
           cursor.execute('SELECT email FROM users WHERE username = %s', [attempted_username])
           email_dict = cursor.fetchall()
-          session['email'] = email_dict[0][0]
+          session['email'] = email_dict[0]['email']
 
           #special needs
           cursor.execute('SELECT special_needs FROM users WHERE username = %s', [attempted_username])
           specialneeds_dict = cursor.fetchall()
-          session['special_needs'] = specialneeds_dict[0][0]
+          session['special_needs'] = specialneeds_dict[0]['special_needs']
 
           #phonenumber
           cursor.execute('SELECT phonenumber FROM users WHERE username = %s', [attempted_username])
           phonenumber_dict = cursor.fetchall()
-          session['phonenumber'] = phonenumber_dict[0][0]
+          session['phonenumber'] = phonenumber_dict[0]['phonenumber']
 
           #admin
           cursor.execute('SELECT uid FROM users WHERE username = %s', [attempted_username])
           uid_dict = cursor.fetchall()
-          uid = uid_dict[0][0]
+          uid = uid_dict[0]['uid']
           admin = False
 
           #test
