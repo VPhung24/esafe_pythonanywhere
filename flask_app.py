@@ -372,6 +372,7 @@ def text_page():
 			phonen_dict = cursor.fetchall()
 			db.close()
 			my_test_prompt = request.form['text']
+			phonen_dict = phonen_dict[0]
 			for numbers in phonen_dict:
 				client.messages.create(
 					to = numbers['phonenumber'],
