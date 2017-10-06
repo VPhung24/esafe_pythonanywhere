@@ -8,26 +8,8 @@ import MySQLdb.cursors
 import os
 from twilio.rest import Client
 from requests import Request, Session
-from twilio.rest import TwilioRestClient
 from twilio.http.response import Response
-try:
-    from urllib.parse import urlparse
-except ImportError:
-     from urlparse import urlparse
-from twilio.rest.resources import Connection
-from twilio.rest.resources.connection import PROXY_TYPE_HTTP
 
-try:
-  proxy = os.environ['http_proxy']
-  if proxy:
-    host, port = urlparse(os.environ["http_proxy"]).netloc.split(":")
-    Connection.set_proxy_info(
-    host,
-    int(port),
-    proxy_type=PROXY_TYPE_HTTP,
-    )
-except:
-  pass
 # Initialize Flask app with the template folder address
 app = Flask(__name__, template_folder='templates')
 app.config["DEBUG"] = True
@@ -214,7 +196,7 @@ def login_page():
           #admin
           cursor.execute('SELECT uid FROM users WHERE username = %s', [attempted_username])
           uid_dict = cursor.fetchall()
-          uid = uid_dict[0]['uid']
+          uid = uid_dict[0]['']
           admin = False
 
           #test
@@ -389,13 +371,13 @@ def text_page():
 		phonen_dict = cursor.fetchall()
 		db.close()
 		my_test_prompt = request.form['text']
-		client.messages.create(
-			to = "5107558184",
-			from_= "+15104221809",
-			body= my_test_prompt)
-		logged_in = True
-		return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
-	elif 'user' in session:
+		for numbers in phonen_dict:
+			client.messages.create(
+				to = numbers['phonenumber'],
+				from_= "+15104221809",
+				body= my_test_prompt
+			)
+	if 'user' in session:
 		logged_in = True
 		return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
 	else:
