@@ -368,7 +368,7 @@ def text_page():
 		if request.method == "POST":
 		    db = connect_to_database()
 		    cursor = db.cursor()
-			cursor.execute('SELECT phonenumber FROM users')
+		    cursor.execute('SELECT phonenumber FROM users')
 			phonen_dict = cursor.fetchall()
 			db.close()
 			my_test_prompt = request.form['text']
