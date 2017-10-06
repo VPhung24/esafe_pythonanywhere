@@ -370,7 +370,7 @@ def text_page():
 		cursor.execute('SELECT phonenumber FROM users')
 		phonen_dict = cursor.fetchall()
 		db.close()
-		my_test_prompt = request.form['text']
+		my_test_prompt = request.form['text_mess']
 		for numbers in phonen_dict:
 			client.messages.create(
 				to = numbers['phonenumber'],
