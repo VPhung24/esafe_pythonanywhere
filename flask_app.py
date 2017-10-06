@@ -370,13 +370,11 @@ def text_page():
 		cursor.execute('SELECT phonenumber FROM users')
 		phonen_dict = cursor.fetchall()
 		db.close()
-		my_test_prompt = request.form['text']
+		my_test_prompt = request.form['text_mess']
 		client.messages.create(
 			to = "5107558184",
-			from_= "+15104221809",
-			body= my_test_prompt)
-		logged_in = True
-		return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
+			from_ = "+15104221809",
+			body = my_test_prompt)
 	elif 'user' in session:
 		logged_in = True
 		return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
