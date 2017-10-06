@@ -364,22 +364,25 @@ auth_token = "d6e71203ae75a31029fa373ceaab7fd0"
 client = Client(account_sid, auth_token)
 @app.route('/text/', methods=["GET","POST"])
 def text_page():
-	if request.method == "POST":
-		db = connect_to_database()
-		cursor = db.cursor()
-		cursor.execute('SELECT phonenumber FROM users')
-		phonen_dict = cursor.fetchall()
-		db.close()
-		my_test_prompt = request.form['text']
-		for numbers in phonen_dict:
-			client.messages.create(
-				to = numbers[0]['phonenumber'],
-				from_= "+15104221809",
-				body= my_test_prompt
-			)
 	if 'user' in session:
-		logged_in = True
-		return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
+		if request.method == "POST":
+			db = connect_to_database()
+			cursor = db.cursor()
+			cursor.execute('SELECT phonenumber FROM users')
+			phonen_dict = cursor.fetchall()
+			db.close()
+			my_test_prompt = request.form['text']
+			for numbers in phonen_dict:
+				client.messages.create(
+					to = numbers['phonenumber'],
+					from_= "+15104221809",
+					body= my_test_prompt
+				)
+			logged_in = True
+			return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
+		else:
+			logged_in = True
+			return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
 	else:
 		logged_in = False
 		return render_template('text.html', logged_in = logged_in)
