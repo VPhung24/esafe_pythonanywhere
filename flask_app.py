@@ -375,8 +375,8 @@ def text_page():
 			to = "5107558184",
 			from_= "+15104221809",
 			body= my_test_prompt)
-			logged_in = True
-			return redirect("http://vphung.pythonanywhere.com/text/")
+		logged_in = True
+		return redirect("http://vphung.pythonanywhere.com/text/")
 	elif 'user' in session:
 		logged_in = True
 		return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
