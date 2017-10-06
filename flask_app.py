@@ -366,8 +366,8 @@ client = Client(account_sid, auth_token)
 def text_page():
 	if 'user' in session:
 		if request.method == "POST":
-			db = connect_to_database()
-			cursor = db.cursor()
+		    db = connect_to_database()
+		    cursor = db.cursor()
 			cursor.execute('SELECT phonenumber FROM users')
 			phonen_dict = cursor.fetchall()
 			db.close()
