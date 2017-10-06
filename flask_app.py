@@ -373,7 +373,7 @@ def text_page():
 		my_test_prompt = request.form['text']
 		for numbers in phonen_dict:
 			client.messages.create(
-				to = numbers['phonenumber'],
+				to = numbers[0]['phonenumber'],
 				from_= "+15104221809",
 				body= my_test_prompt
 			)
