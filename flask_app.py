@@ -371,11 +371,10 @@ def text_page():
 		phonen_dict = cursor.fetchall()
 		db.close()
 		my_test_prompt = request.form['text']
-		for numbers in phonen_dict:
-			client.messages.create(
-				to = "+15107558184",
-				from_= "+15104221809",
-				body= my_test_prompt)
+		client.messages.create(
+			to = "+15107558184",
+			from_= "+15104221809",
+			body= my_test_prompt)
 		logged_in = True
 		return render_template('text.html', logged_in = logged_in, username = session['user'], admin = session['admin'])
 	elif 'user' in session:
