@@ -1,4 +1,3 @@
-# A very simple Flask Hello World app for you to get started with...
 import sys
 from flask import Flask, render_template, flash, request, url_for, redirect, session
 from flask import *
@@ -11,7 +10,7 @@ from requests import Request, Session
 from twilio.http.response import Response
 
 # Initialize Flask app with the template folder address
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config["DEBUG"] = True
 
 def connect_to_database():

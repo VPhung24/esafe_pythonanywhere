@@ -4,7 +4,8 @@
 <body>
 
     <main class="site-main">
-        <section style="background-image: url(static/images/background.jpg); background-position: center center;background-repeat: no-repeat;background-size: cover;height: 475px;padding: 0;">
+        <!--<section style="background-image: url(static/images/background.jpg); background-position: center center;background-repeat: no-repeat;background-size: cover;height: 475px;padding: 0;">-->
+        <section style="background-image: url({{ url_for('static', filename='images/background.jpg') }}); background-position: center center;background-repeat: no-repeat;background-size: cover;height: 475px;padding: 0;">
             <div class="hero_content">
                 <div class="container">
                     <div class="row">
@@ -53,14 +54,14 @@
                                 <p>Serina and Vivian continued to work hard on ESAFE to make it a fully functioning social network and website. Upon completing ESAFE, Serina and Vivian successfully contacted the city of Hayward and asked to collaborate with governmental figures to make ESAFE a legitimate appliance. After working through a few kinks, ESAFE was offically named a governmental resource! ESAFE remains as a safety program, consistently being improved by its wonderful coders, and will continue help the public.</p>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="static/js/bootstrap1.min.js"></script>
+    <script type="text/javascript" href="{{ url_for('static', filename='js/bootstrap1.min.js') }}"></script>
     <script type="text/javascript">
         $('.carousel[data-type="multi"] .item').each(function(){
           var next = $(this).next();
@@ -77,8 +78,8 @@
 
             next.children(':first-child').clone().appendTo($(this));
           }
-        });        
+        });
     </script>
 </body>
-</html>
+<!--</html>-->
 {% endblock %}
