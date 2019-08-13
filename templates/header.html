@@ -58,37 +58,37 @@
 					<span class="sr-only"></span>
 					<i class="fa fa-bars"></i>
 				</button>
-				<a href="http://vphung.pythonanywhere.com/" class="navbar-brand">
+				<a href="/" class="navbar-brand">
                     <img src="{{ url_for('static', filename='/images/logo.png') }}" alt="Logo" style="width: 150px; height: 75px">
 				</a>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-navbar-collapse">
                     <ul class="nav navbar-nav main-navbar-nav">
-                        <li class="active"><a href="http://vphung.pythonanywhere.com/" title="">HOME</a></li>
+                        <li class="active"><a href="/" title="">HOME</a></li>
                         <li class="dropdown">
                             <a href="#" title="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">EMERGENCY
                                 <span class="caret">
                                 </span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href='http://vphung.pythonanywhere.com/earthquakes/' title='Earthquakes'>EARTHQUAKES</a></li>
-                                <li><a href="http://vphung.pythonanywhere.com/flooding/" title="Flooding">FLOODING</a></li>
-                                <li><a href="http://vphung.pythonanywhere.com/landslides/" title="Landslides">LANDSLIDES</a></li>
-                                <li><a href="http://vphung.pythonanywhere.com/wildfires/" title="Wildfires">WILDFIRES</a></li>
-                                <li><a href="http://vphung.pythonanywhere.com/preparation/" title="Preparation">PREPARATION</a></li>
+                                <li><a href='/earthquakes/' title='Earthquakes'>EARTHQUAKES</a></li>
+                                <li><a href="/flooding/" title="Flooding">FLOODING</a></li>
+                                <li><a href="/landslides/" title="Landslides">LANDSLIDES</a></li>
+                                <li><a href="/wildfires/" title="Wildfires">WILDFIRES</a></li>
+                                <li><a href="/preparation/" title="Preparation">PREPARATION</a></li>
                             </ul>
                         </li>
-                        <li><a href="http://vphung.pythonanywhere.com/emergency_contact/" title="Emergency Contact">EMERGENCY CONTACT</a></li>
-                        <li><a href="http://vphung.pythonanywhere.com/why/" title="Why">WHY</a></li>
+                        <li><a href="/emergency_contact/" title="Emergency Contact">EMERGENCY CONTACT</a></li>
+                        <li><a href="/why/" title="Why">WHY</a></li>
                         {% if logged_in %}
-                        <li><a href="http://vphung.pythonanywhere.com/login/" title="Dashboard" style="text-transform: uppercase;">{{ username }}</a></li>
+                        <li><a href="/login/" title="Dashboard" style="text-transform: uppercase;">{{ username }}</a></li>
 
-                        <li><a href="http://vphung.pythonanywhere.com/logout/" title="Logout" style="text-transform: uppercase;">LOGOUT</a></li>
+                        <li><a href="/logout/" title="Logout" style="text-transform: uppercase;">LOGOUT</a></li>
 
                         {% endif %}
 
                         {% if not logged_in %}
-                        <li><a href="http://vphung.pythonanywhere.com/login/" title="Login">LOGIN / REGISTER</a></li>
+                        <li><a href="/login/" title="Login">LOGIN / REGISTER</a></li>
                         {% endif %}
 
                     </ul>

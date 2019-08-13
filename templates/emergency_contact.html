@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
-                        <li><a href="http://vphung.pythonanywhere.com/">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li class="active">Emergency Contact</li>
-                    </ol>                    
+                    </ol>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
 
                         <p><a href="http://www.nws.noaa.gov/nwr/"><i class="fa fa-music" aria-hidden="true"></i> Listen to NOAA Weather Station at 162.400, 162.425, 162.450, 162.475, 162.500, 162.525, or 162.550 MHz on the VHF public service band for more information. </a></p>
 
-                        <p><a href="https://www.fema.gov/integrated-public-alert-warning-system"><i class="fa fa-mobile" aria-hidden="true"></i> Stay on alert for Wireless Emergency Alerts. Read more here. </a></p> 
+                        <p><a href="https://www.fema.gov/integrated-public-alert-warning-system"><i class="fa fa-mobile" aria-hidden="true"></i> Stay on alert for Wireless Emergency Alerts. Read more here. </a></p>
 
                         <p><a href="https://www.fema.gov/text-messages"><i class="fa fa-mobile" aria-hidden="true"></i> Text 43362 (4FEMA) the message: "SHELTER" + your ZIP code to find a nearby shelter. For example, "shelter 12345" would be texted if your ZIP code was 12345. Read more here.</a></p>
 
@@ -42,18 +42,18 @@
                                 <p id="demo"></p>
                                     <script>
                                         var x = document.getElementById("demo");
-                                        function getLocation() 
+                                        function getLocation()
                                         {
-                                            if (navigator.geolocation) 
+                                            if (navigator.geolocation)
                                             {
                                              navigator.geolocation.getCurrentPosition(showPosition);
-                                            } 
-                                            else 
-                                            { 
+                                            }
+                                            else
+                                            {
                                                 x.innerHTML = "Geolocation is not supported by this browser.";
                                             }
                                         }
-                                        function showPosition(position) 
+                                        function showPosition(position)
                                         {
                                             var lat = '' + position.coords.latitude;
                                             var long = '' + position.coords.longitude;
