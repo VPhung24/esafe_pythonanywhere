@@ -233,7 +233,7 @@ def logout_page():
 	session.pop('state', None)
 	session.pop('streetaddress', None)
 	session.pop('email', None)
-	return redirect("http://vphung.pythonanywhere.com/login/")
+	return redirect("/login/")
 
 @app.route("/preparation/")
 def preparation_route():
@@ -331,7 +331,7 @@ def register_page():
 		    cursor = db.cursor()
 		    cursor.execute('INSERT into users(firstname, lastname, username, city, state, streetaddress, email, password, special_needs, phonenumber, zipcode) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (my_firstname, my_lastname, my_username, my_city, my_state, my_streetaddress, my_email, my_password, my_specialneeds, my_phonenumber, my_zipcode))
 		    db.commit()
-		    return redirect("http://vphung.pythonanywhere.com/login/")
+		    return redirect("/login/")
 	if 'user' in session:
 		logged_in = True
 		return render_template("register.html", logged_in = logged_in, username = session['user'])
